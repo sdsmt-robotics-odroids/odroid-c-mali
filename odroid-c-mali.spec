@@ -1,7 +1,7 @@
-%global commit 31d5c21180f4d2f160332c7018ec91f8e43ca8bf
+%global commit cdf9ddb1cb2090f2c25dc4b4cca5e0d73d8db17c
 
 Name:           odroid-c-mali
-Version:        2015.10.15
+Version:        2016.09.12
 Release:        1%{?dist}
 Summary:        Mali GL Binaries for ODROID-C
 
@@ -119,5 +119,8 @@ ln -s libGLESv1_CM.so.1.1 %{buildroot}%{_libdir}/odroid-c-mali-x11/libGLESv1_CM.
 %{_includedir}/umplock/
 
 %changelog
+* Fri Oct 14 2016 Scott K Logan <logans@cottsay.net> - 2016.09.12-1
+- Update to latest source
+
 * Wed Dec 02 2015 Scott K Logan <logans@cottsay.net> - 2015.10.15-1
 - Initial package
