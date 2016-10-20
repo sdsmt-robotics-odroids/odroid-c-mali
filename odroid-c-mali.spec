@@ -2,7 +2,7 @@
 
 Name:           odroid-c-mali
 Version:        2016.09.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Mali GL Binaries for ODROID-C
 
 Group:          System Environment/Libraries
@@ -38,22 +38,27 @@ Summary:        Mali GL Binaries for ODROID-C (UMP Headers)
 Requires:       %{name}-ump%{?_isa} = %{version}-%{release}
 
 %description
-Mali GL Binaries for ODROID-C based on r5p0-01rel0
+Mali GL Binaries for ODROID-C based on r6p2-01rel0
 
 %description fb
-Mali GL Binaries for ODROID-C (Frame Buffer) based on r5p0-01rel0
+Mali GL Binaries for ODROID-C (Frame Buffer) based on r6p2-01rel0
 
 %description x11
-Mali GL Binaries for ODROID-C (X11) based on r5p0-01rel0
+Mali GL Binaries for ODROID-C (X11) based on r6p2-01rel0
 
 %description ump
-Mali GL Binaries for ODROID-C (UMP) based on r5p0-01rel0
+Mali GL Binaries for ODROID-C (UMP) based on r6p2-01rel0
 
 %description ump-devel
-Mali GL Binaries for ODROID-C (UMP Headers) based on r5p0-01rel0
+Mali GL Binaries for ODROID-C (UMP Headers) based on r6p2-01rel0
 
 %prep
 %setup -qn c1_mali_libs-%{commit}
+
+chmod 644 *.md
+
+# The LICENSE.md file is a symlink - it needs to be resolved for %%license to work
+cp --remove-destination `readlink LICENSE.md` LICENSE.md
 
 %build
 
@@ -104,14 +109,20 @@ ln -s libGLESv1_CM.so.1.1 %{buildroot}%{_libdir}/odroid-c-mali-x11/libGLESv1_CM.
 %postun ump -p /sbin/ldconfig
 
 %files fb
+%doc README.md
+%license LICENSE.md
 %{_libdir}/odroid-c-mali-fb/
 %config(noreplace) %{_sysconfdir}/ld.so.conf.d/odroid-c-mali-fb.conf
 
 %files x11
+%doc README.md
+%license LICENSE.md
 %{_libdir}/odroid-c-mali-x11/
 %config(noreplace) %{_sysconfdir}/ld.so.conf.d/odroid-c-mali-x11.conf
 
 %files ump
+%doc README.md
+%license LICENSE.md
 %{_libdir}/libUMP.so
 
 %files ump-devel
@@ -119,6 +130,9 @@ ln -s libGLESv1_CM.so.1.1 %{buildroot}%{_libdir}/odroid-c-mali-x11/libGLESv1_CM.
 %{_includedir}/umplock/
 
 %changelog
+* Wed Oct 19 2016 Scott K Logan <logans@cottsay.net> - 2016.09.12-2
+- Add LICENSE.md and README.md
+
 * Fri Oct 14 2016 Scott K Logan <logans@cottsay.net> - 2016.09.12-1
 - Update to latest source
 
