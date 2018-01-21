@@ -1,8 +1,10 @@
 %global commit cdf9ddb1cb2090f2c25dc4b4cca5e0d73d8db17c
+%global debug_package %{nil}
+%global __debug_install_post %{nil}
 
 Name:           odroid-c-mali
 Version:        2016.09.12
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Mali GL Binaries for ODROID-C
 
 Group:          System Environment/Libraries
@@ -130,6 +132,9 @@ ln -s libGLESv1_CM.so.1.1 %{buildroot}%{_libdir}/odroid-c-mali-x11/libGLESv1_CM.
 %{_includedir}/umplock/
 
 %changelog
+* Sat Jan 20 2018 Scott K Logan <logans@cottsay.net> - 2016.09.12-3
+- Disable debuginfo packages
+
 * Wed Oct 19 2016 Scott K Logan <logans@cottsay.net> - 2016.09.12-2
 - Add LICENSE.md and README.md
 
